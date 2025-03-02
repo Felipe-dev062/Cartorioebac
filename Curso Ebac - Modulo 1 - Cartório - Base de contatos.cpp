@@ -3,61 +3,77 @@
 #include <locale.h>  //biblioteca de alocação de texto por região
 #include <string.h> //biblioteca responsável por cuidar das string
 
-int registro() //Função responsável por cadastrar os usuários no sistema
-{
-	//inicia criação de variáveis/string
-	char arquivo[40];
-	char cpf[40];
-	char nome[40];
-	char sobrenome[40];
-	char cargo[40];
-	//final criação de variáveis/string
+int registro() {
+    // Inicia criação de variáveis/string
+    char arquivo[40];
+    char cpf[40];
+    char nome[40];
+    char sobrenome[40];
+    char cargo[40];
+    // Fim da criação de variáveis/string
 
-	printf("Digite o CPF a ser cadastrado: "); //coletando informação do usuário
-	scanf("%s", cpf); //%s refere-se a string - salvar
-	
-	strcpy(arquivo, cpf); //Responsável por copiar os valores da string 
-	
-	FILE *file; //Cria o arquivo
-	file = fopen(arquivo, "w"); //Cria o arquivo e o w significa escrever
-	fprintf(file,cpf);  //Salvo o valor da variavel
-	fclose(file);
-	
-	file = fopen(arquivo, "a"); //arquivando valor 
-	fprintf(file,","); //separando por , 
-	fclose(file);
-	
-	printf("Digite o nome a ser cadastrado: "); //coletando informação nome
-	scanf("%s",nome);
-	
-	file = fopen(arquivo, "a");
-	fprintf(file,nome);
-	fclose(file);
-	
-	file = fopen(arquivo, "a");
-	fprintf(file,",");
-	fclose(file);
-	
-	printf("Digite o sobrenome a ser cadastrado: "); //coletando informação sobrenome
-	scanf("%s",sobrenome);
-	
-	file = fopen(arquivo, "a");
-	fprintf(file,sobrenome);
-	fclose(file);
+    while (1) { // Inicia um loop que vai continuar até o usuário escolher sair
+        system("cls"); // Limpa a tela antes de iniciar um novo registro (Windows)
+        // system("clear"); // Use esta linha se estiver em Linux/macOS
+        printf("Digite o CPF a ser cadastrado: "); // Coletando informação do usuário
+        scanf("%s", cpf); // %s refere-se a string - salvar
 
-	file = fopen(arquivo, "a");
-	fprintf(file,",");
-	fclose(file);
-	
-	printf("Digite o cargo a ser cadastrado: "); //coletando informação cargo
-	scanf("%s",cargo);
-	
-	file = fopen(arquivo, "a");
-	fprintf(file,cargo);
-	fclose(file);
-	
-	system("pause");
-	
+        strcpy(arquivo, cpf); // Responsável por copiar os valores da string
+
+        FILE *file; // Cria o arquivo
+        file = fopen(arquivo, "w"); // Cria o arquivo e o "w" significa escrever
+        fprintf(file, cpf);  // Salva o valor da variável
+        fclose(file);
+
+        file = fopen(arquivo, "a"); // Arquivando valor
+        fprintf(file, ","); // Separando por vírgula
+        fclose(file);
+
+        printf("Digite o nome a ser cadastrado: "); // Coletando informação nome
+        scanf("%s", nome);
+
+        file = fopen(arquivo, "a");
+        fprintf(file, nome);
+        fclose(file);
+
+        file = fopen(arquivo, "a");
+        fprintf(file, ",");
+        fclose(file);
+
+        printf("Digite o sobrenome a ser cadastrado: "); // Coletando informação sobrenome
+        scanf("%s", sobrenome);
+
+        file = fopen(arquivo, "a");
+        fprintf(file, sobrenome);
+        fclose(file);
+
+        file = fopen(arquivo, "a");
+        fprintf(file, ",");
+        fclose(file);
+
+        printf("Digite o cargo a ser cadastrado: "); // Coletando informação cargo
+        scanf("%s", cargo);
+
+        file = fopen(arquivo, "a");
+        fprintf(file, cargo);
+        fclose(file);
+
+        system("pause");
+
+        // Pergunta após o cadastro completo
+        int opcao;
+        printf("\nDeseja cadastrar outro usuario?\n");
+        printf("1 - Sim\n");
+        printf("2 - Voltar para o menu principal\n");
+        printf("Digite a opção: ");
+        scanf("%d", &opcao);
+
+        if (opcao == 2) {
+            break; // Sai do loop, voltando para o menu principal
+        }
+    }
+
+    return 0;
 }
 
 int consulta() //Função responsável por consultar os usuários no sistema
